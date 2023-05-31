@@ -14,6 +14,14 @@ int main(int argc, char *argv[]) {
 
     QLineEdit *lineEdit = new QLineEdit(&window);
     lineEdit->setGeometry(10, 10, 500, 30);
+
+    QLabel *label = new QLabel(&window);
+    label->setGeometry(10, 50, 620, 420);
+	label->setText("Test Text");
+    label->setAlignment(Qt::AlignCenter);
+
+    
+
     window.show();
 
     return app.exec();
