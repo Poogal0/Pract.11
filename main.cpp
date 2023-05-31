@@ -17,10 +17,18 @@ int main(int argc, char *argv[]) {
 
     QLabel *label = new QLabel(&window);
     label->setGeometry(10, 50, 620, 420);
-	label->setText("Test Text");
     label->setAlignment(Qt::AlignCenter);
 
-    
+    QPushButton *button = new QPushButton("Open", &window);
+    button->setGeometry(520, 10, 100, 30);
+    QObject::connect(button, &QPushButton::clicked, [&](){
+        QString fileName = QFileDialog::getOpenFileName(&window, "Open Image", "", "Image Files (*.png *.jpg *.bmp)");
+        if (!fileName.isEmpty()) {
+            QPixmap pixmap(fileName);
+            label->setPixmap(pixmap.scaled(label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            lineEdit->setText(fileName);
+        }
+    });
 
     window.show();
 
